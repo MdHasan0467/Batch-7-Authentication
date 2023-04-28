@@ -4,10 +4,11 @@ import { AuthContext } from '../Context/AuthProvider';
 
 const Nav = () => {
 
-  const {user} = useContext(AuthContext)
+	    //!  Current User
+      const { user, logOut} = useContext(AuthContext)
 
 
-  console.log(user?.photoURL);
+  console.log(user);
 
 
 
@@ -33,10 +34,10 @@ const Nav = () => {
 
 
   
-  <div className="navbar-end">
+  {/* <div className="navbar-end">
     <Link to={'/login'} className="btn mx-5">Login</Link>
     <Link to={'/signup'} className="btn mx-5">Signup</Link>
-  </div>
+  </div> */}
 
 
 
@@ -52,19 +53,26 @@ const Nav = () => {
           user?
           <img alt='img' src={user?.photoURL} />
           :
-          <img alt='img' src="/https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?b=1&s=170667a&w=0&k=20&c=ZAXJYLesh6gSd9huAgpy6rjpR4z-IFVH9MpxrKIXCrs=" />
+          <img alt='img' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV3Vh51cuPQh3Z1Nl1nAWegvzFsteeMfNdXA&usqp=CAU" />
          }
         </div>
       </label>
       <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
         <li>
-          <a className="justify-between">
+          <a href='#h' className="justify-between">
             {user?.displayName}
-            <span className="badge">New</span>
+            <span className="badge">{user?.displayName}</span>
           </a>
         </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        {
+          user?.uid?
+          <li><Link to='' onClick={logOut()}>Logout</Link></li>
+          :
+          <>
+          <li><Link to={'/login'} className="">Login</Link></li>
+          <li><Link to={'/signup'} className="">Signup</Link></li>
+          </>
+        }
       </ul>
     </div>
 

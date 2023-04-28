@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 
-     const {createSignUp, userprofile} = useContext(AuthContext);
+     const {createUser, userprofile} = useContext(AuthContext);
 
 const navigate = useNavigate()
 
@@ -27,7 +27,7 @@ const navigate = useNavigate()
 
 
 
-        createSignUp(email, password)
+        createUser(email, password)
         .then(result => {
             const user = result.user;
             console.log('user', user);
@@ -108,7 +108,7 @@ const navigate = useNavigate()
 
 
                 <div className="form-control mt-6">
-                <button className="btn btn-primary">Signup</button>
+                <button className="btn bg-gradient-to-l hover:bg-gradient-to-r from-violet-500 to-fuchsia-500 border-0">Signup</button>
                 </div>
             </form>
 
